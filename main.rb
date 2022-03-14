@@ -98,7 +98,8 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 text: "Hello #{message.from.first_name}! This is a magic ball when you write something to him, he will answer in different ways, you can write your questions to him, and the ball will answer them"
                 )
         else 
-            #condition = check(message,latin,cyr)
+            mess = message.text
+            condition = check(mess,latin,cyr)
             if condition == 'eng'
                 bot.api.send_message(
                 chat_id: message.chat.id,
