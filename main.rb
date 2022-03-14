@@ -1,7 +1,14 @@
 require "telegram/bot"
 
-TOKEN = 'YOUR BOT TOKEN'
-
+TOKEN = '5262359948:AAGhRoX5MXAyFj70JZm2uQKa16cso7nNWEE'
+def check (message,latin,cyr)
+    message = message.split("")
+    if !(message & latin).empty?
+        return 'eng'
+    elsif !(message & cyr).empty?
+        return 'russ'
+    end 
+end
 russ = [
 #Положительные
 "Бесспорно", 
@@ -69,6 +76,9 @@ condition = nil
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
     bot.listen do |message|
+        latin = [*"A".."Z",*"a".."z"]
+        cyr = [*"А".."Я",*"а".."я"]
+        if message 
         case message.text
         when '/start'
             condition = 'eng'
@@ -89,6 +99,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 text: "Hello #{message.from.first_name}! This is a magic ball when you write something to him, he will answer in different ways, you can write your questions to him, and the ball will answer them"
                 )
         else 
+            condition = check(message,latin,cyr)
             if condition == 'eng'
                 bot.api.send_message(
                 chat_id: message.chat.id,
