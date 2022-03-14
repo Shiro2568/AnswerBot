@@ -1,11 +1,11 @@
 require "telegram/bot"
 
-TOKEN = 'YOUR TOKEN'
+TOKEN = '5262359948:AAGhRoX5MXAyFj70JZm2uQKa16cso7nNWEE'
 def check (message,latin,cyr)
     message = message.split("")
     if !(message & latin).empty?
         return 'eng'
-    elsif !(message & cyr).empty?
+    else
         return 'russ'
     end 
 end
