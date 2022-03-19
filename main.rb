@@ -1,12 +1,9 @@
 require "telegram/bot"
 
-TOKEN = '5262359948:AAGhRoX5MXAyFj70JZm2uQKa16cso7nNWEE'
+TOKEN = 'YOUR TOKEN'
 def check (message,latin,cyr)
     message = message.split("")
-    if (!(message & latin)) && (!(message & cyr))
-    return 'error'
-
-    elsif !(message & latin).empty?
+    if !(message & latin).empty?
         return 'eng'
     elsif !(message & cyr).empty?
         return 'russ'
@@ -107,12 +104,6 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 bot.api.send_message(
                 chat_id: message.chat.id,
                 text: eng.sample)
-            elsif condition == 'error'
-                bot.api.send_message(
-                chat_id: message.chat.id,
-                text: "Error")
-                condition == 'eng'
-
             else 
                 bot.api.send_message(
                 chat_id: message.chat.id,
