@@ -3,12 +3,12 @@ require "telegram/bot"
 TOKEN = '5262359948:AAGhRoX5MXAyFj70JZm2uQKa16cso7nNWEE'
 def check (message,latin,cyr)
     message = message.split("")
-    if !(message & latin).empty?
+    if !(message & latin) && !(message & cyr)
+    return 'error'
+    elsif !(message & latin).empty?
         return 'eng'
     elsif !(message & cyr).empty?
         return 'russ'
-        elsif !(message & latin) && !(message & cyr)
-            return 'error'
     end 
 end
 russ = [
