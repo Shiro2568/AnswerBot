@@ -106,6 +106,10 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 bot.api.send_message(
                 chat_id: message.chat.id,
                 text: eng.sample)
+            elsif condition == 'error'
+                bot.api.send_message(
+                    chat_id: message.chat.id,
+                    text: "I do not know this language")
             else 
                 bot.api.send_message(
                 chat_id: message.chat.id,
