@@ -5,8 +5,10 @@ def check (message,latin,cyr)
     message = message.split("")
     if !(message & latin).empty?
         return 'eng'
-    else
+    elsif !(message & cyr).empty?
         return 'russ'
+        elsif !(message & latin) && !(message & cyr)
+            return 'error'
     end 
 end
 russ = [
@@ -104,6 +106,12 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
                 bot.api.send_message(
                 chat_id: message.chat.id,
                 text: eng.sample)
+            elsif condition == 'error'
+                bot.api.send_message(
+                chat_id: message.chat.id,
+                text: "Error")
+                condition == 'eng'
+
             else 
                 bot.api.send_message(
                 chat_id: message.chat.id,
